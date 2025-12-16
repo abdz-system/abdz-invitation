@@ -1,117 +1,128 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>ABDZ – Cœur du système</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>ABDZ – Cœur du système</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    :root{
-      --ivory:#f6f1e8;
-      --ivorySoft:#e9e4da;
-      --blue:#1f3b6f;
-      --blueSoft:#274a8a;
-      --textBlue:#243b5a;
-    }
+<style>
+:root{
+  --ivory:#f6f1e8;
+  --ivorySoft:#e9e4da;
+  --blue:#1f3b6f;
+  --blueSoft:#274a8a;
+  --textBlue:#243b5a;
+}
 
-    body{
-      margin:0;
-      background:var(--ivory);
-      font-family:"Century Gothic", Arial, sans-serif;
-      text-align:center;
-      color:var(--textBlue);
-    }
+body{
+  margin:0;
+  background:var(--ivory);
+  font-family:"Century Gothic", Arial, sans-serif;
+  color:var(--textBlue);
+  text-align:center;
+}
 
-    h2{
-      margin:28px 0 16px;
-      letter-spacing:2px;
-      font-weight:700;
-    }
+.wrap{
+  max-width:980px;
+  margin:0 auto;
+  padding:20px 14px 60px;
+}
 
-    .wrap{
-      max-width:980px;
-      margin:0 auto;
-      padding:0 14px 60px;
-    }
+h2{
+  margin:20px 0 18px;
+  letter-spacing:2px;
+  font-weight:700;
+}
 
-    .mallette{
-      position:relative;
-      display:inline-block;
-      max-width:720px;
-      width:100%;
-    }
+.mallette{
+  position:relative;
+  display:inline-block;
+  max-width:720px;
+  width:100%;
+}
 
-    .mallette img{
-      width:100%;
-      height:auto;
-      border-radius:12px;
-      box-shadow:0 30px 60px rgba(0,0,0,.18);
-      user-select:none;
-    }
+.mallette-img{
+  width:100%;
+  height:auto;
+  display:block;
+  border-radius:14px;
+  box-shadow:0 30px 60px rgba(0,0,0,.18);
+  user-select:none;
+}
 
-    .hotspot{
-      position:absolute;
-      background:transparent;
-      border:0;
-      cursor:pointer;
-      z-index:10;
-    }
+.hotspot{
+  position:absolute;
+  background:transparent;
+  border:0;
+  cursor:pointer;
+  z-index:10;
+}
 
-    /* ZONES CLIQUABLES VALIDÉES */
-    .hs-1{left:42%;top:47%;width:16%;height:7%;}
-    .hs-2{left:42%;top:56%;width:16%;height:7%;}
-    .hs-3{left:42%;top:61%;width:16%;height:7%;}
-    .hs-4{left:6%; top:48%;width:18%;height:34%;}
-    .hs-5{left:76%;top:48%;width:18%;height:34%;}
-    .hs-6{left:44%;top:75%;width:12%;height:12%;}
+/* ZONES CLIQUABLES – VERSION VALIDÉE */
+.hs-1{left:42%;top:47%;width:16%;height:7%;}
+.hs-2{left:42%;top:56%;width:16%;height:7%;}
+.hs-3{left:42%;top:65%;width:16%;height:7%;}
+.hs-4{left:6%; top:48%;width:18%;height:34%;}
+.hs-5{left:76%;top:48%;width:18%;height:34%;}
+.hs-6{left:44%;top:78%;width:12%;height:12%;}
 
-    .panel{
-      position:fixed;
-      inset:0;
-      display:none;
-      background:rgba(0,0,0,.55);
-      align-items:center;
-      justify-content:center;
-      z-index:9999;
-    }
+/* MODALE */
+.panel{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+  padding:20px;
+}
 
-    .panel.active{display:flex;}
+.panel.active{display:flex;}
 
-    .panel-box{
-      background:var(--ivory);
-      border-radius:18px;
-      padding:22px;
-      max-width:920px;
-      width:96%;
-      max-height:90vh;
-      overflow:auto;
-    }
+.panel-box{
+  background:var(--ivory);
+  max-width:900px;
+  width:96%;
+  max-height:90vh;
+  overflow:auto;
+  border-radius:18px;
+  padding:22px;
+}
 
-    .btn{
-      background:var(--blue);
-      color:#fff;
-      border:0;
-      padding:8px 16px;
-      border-radius:16px;
-      cursor:pointer;
-    }
+.panel-top{
+  display:flex;
+  justify-content:flex-end;
+}
 
-    .panel-content h3{
-      letter-spacing:2px;
-    }
+.btn{
+  background:var(--blue);
+  color:#fff;
+  border:0;
+  padding:8px 16px;
+  border-radius:16px;
+  cursor:pointer;
+}
 
-    .panel-content strong{
-      font-weight:700;
-      color:#162a44;
-    }
+.btn:hover{background:var(--blueSoft);}
 
-    .panel-content img{
-      max-width:100%;
-      margin:14px auto;
-      display:block;
-      border-radius:14px;
-    }
-  </style>
+.panel-content h3{
+  margin:12px 0;
+  letter-spacing:2px;
+}
+
+.panel-content p{
+  line-height:1.5;
+  font-size:15px;
+}
+
+.panel-content img{
+  max-width:100%;
+  border-radius:14px;
+  margin:14px auto;
+  display:block;
+}
+</style>
 </head>
 
 <body>
@@ -120,7 +131,12 @@
   <h2>BOÎTE CENTRALE</h2>
 
   <div class="mallette">
-    <img src="boite-centrale.png" alt="Boîte centrale ABDZ">
+    <img
+      src="https://i.ibb.co/tTzqhZL0/B-boite-centrale.png"
+      alt="Boîte centrale ABDZ"
+      class="mallette-img"
+      draggable="false"
+    >
 
     <button class="hotspot hs-1" onclick="openPanel(1)"></button>
     <button class="hotspot hs-2" onclick="openPanel(2)"></button>
@@ -131,34 +147,72 @@
   </div>
 </div>
 
-<div id="panel" class="panel" onclick="closePanel()">
-  <div class="panel-box" onclick="event.stopPropagation()">
-    <button class="btn" onclick="closePanel()">Fermer</button>
+<div id="panel" class="panel">
+  <div class="panel-box">
+    <div class="panel-top">
+      <button class="btn" onclick="closePanel()">✕ Fermer</button>
+    </div>
     <div id="panel-content" class="panel-content"></div>
   </div>
 </div>
 
 <script>
 const DATA={
-1:{title:"1. ARCHITECTURE",text:"Comme <strong>ATHENA</strong>, le système <strong>ABDZ</strong> repose sur une architecture interne rigoureuse.",imgs:["https://i.ibb.co/LDMwrkHZ/1-ATHENA-Architecture.png"]},
-2:{title:"2. MODULARITÉ",text:"Comme <strong>PROTÉE</strong>, le système <strong>ABDZ</strong> s’adapte sans perdre son essence.",imgs:["https://i.ibb.co/Zzvrxytv/2-PROTEE-Modularit.png"]},
-3:{title:"3. ACTIVATION",text:"Comme <strong>HEPHAISTOS</strong>, le système <strong>ABDZ</strong> s’active par l’usage.",imgs:["https://i.ibb.co/2zHktYX/3-HEPHAISTOS-Activation.png"]},
-4:{title:"4. DURABILITÉ",text:"Comme <strong>DÉMÉTER</strong>, <strong>ABDZ</strong> est conçu pour durer.",imgs:["https://i.ibb.co/tp9Tf83T/4-DEMETER-Durabilit.png"]},
-5:{title:"5. EXCLUSIVITÉ",text:"Comme <strong>APOLLON</strong>, <strong>ABDZ</strong> préserve la rareté.",imgs:["https://i.ibb.co/39tg8Ndx/5-APOLLON-Exclusivit.png"]},
-6:{title:"6. PROTECTION",text:"Ce qui est montré est volontaire. Ce qui est protégé l’est tout autant.",imgs:["https://i.ibb.co/ksh6R0dB/6-b-boite-de-fremeture.png"]}
+1:{
+title:"1. ARCHITECTURE",
+text:"<strong>ATHENA</strong> incarne la construction intelligente. ABDZ repose sur une architecture interne rigoureuse, indépendante de l’esthétique.",
+imgs:["https://i.ibb.co/LDMwrkHZ/1-ATHENA-Architecture.png"]
+},
+2:{
+title:"2. MODULARITÉ",
+text:"<strong>PROTÉE</strong> symbolise l’adaptation. ABDZ s’intègre à de multiples formes sans perdre son identité.",
+imgs:["https://i.ibb.co/Zzvrxytv/2-PROTEE-Modularit.png"]
+},
+3:{
+title:"3. ACTIVATION",
+text:"<strong>HÉPHAÏSTOS</strong> représente le mécanisme. ABDZ s’active par l’usage, simplement et discrètement.",
+imgs:["https://i.ibb.co/2zHktYX/3-HEPHAISTOS-Activation.png"]
+},
+4:{
+title:"4. DURABILITÉ",
+text:"<strong>DÉMÉTER</strong> incarne le temps long. ABDZ transforme le flacon en objet durable.",
+imgs:["https://i.ibb.co/tp9Tf83T/4-DEMETER-Durabilit.png"]
+},
+5:{
+title:"5. EXCLUSIVITÉ",
+text:"<strong>APOLLON</strong> symbolise la rareté. ABDZ contrôle volontairement sa compatibilité.",
+imgs:["https://i.ibb.co/39tg8Ndx/5-APOLLON-Exclusivit.png"]
+},
+6:{
+title:"6. PROTECTION",
+text:"Ce qui est montré est volontaire.<br>Ce qui est protégé l’est tout autant.",
+imgs:[
+"https://i.ibb.co/4nvT4PZY/6-a-A-M-AD-E-ABDZ.png",
+"https://i.ibb.co/ksh6R0dB/6-b-boite-de-fremeture.png"
+]
+}
 };
 
 function openPanel(n){
-  const p=document.getElementById("panel");
+  const panel=document.getElementById("panel");
   const c=document.getElementById("panel-content");
   const d=DATA[n];
-  c.innerHTML=`<h3>${d.title}</h3><p>${d.text}</p>`+
-    d.imgs.map(i=>`<img src="${i}">`).join("");
-  p.classList.add("active");
+  if(!d)return;
+  c.innerHTML=`<h3>${d.title}</h3><p>${d.text}</p>${d.imgs.map(i=>`<img src="${i}">`).join("")}`;
+  panel.classList.add("active");
 }
+
 function closePanel(){
   document.getElementById("panel").classList.remove("active");
 }
+
+document.getElementById("panel").addEventListener("click",e=>{
+  if(e.target.id==="panel")closePanel();
+});
+
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape")closePanel();
+});
 </script>
 
 </body>
