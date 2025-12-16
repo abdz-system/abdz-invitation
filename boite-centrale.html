@@ -1,157 +1,155 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>ABDZ — Cœur du système</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>ABDZ — Cœur du système</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    :root{
-      --ivory:#f6f1e8;
-      --ivorySoft:#e9e4da;
-      --blue:#1f3b6f;
-      --blueSoft:#274a8a;
-      --textBlue:#243b5a;
-    }
+<style>
+:root{
+  --ivory:#f6f1e8;
+  --ivorySoft:#e9e4da;
+  --blue:#1f3b6f;
+  --blueSoft:#274a8a;
+  --textBlue:#243b5a;
+}
 
-    body{
-      margin:0;
-      background:var(--ivory);
-      color:var(--textBlue);
-      font-family:"Century Gothic", Arial, sans-serif;
-      text-align:center;
-    }
+/* BASE */
+body{
+  margin:0;
+  background:var(--ivory);
+  color:var(--textBlue);
+  font-family:"Century Gothic", Arial, sans-serif;
+  text-align:center;
+}
 
-    h2{
-      margin:28px 0 18px;
-      letter-spacing:2px;
-      font-weight:700;
-    }
+h2{
+  margin:28px 0 18px;
+  letter-spacing:2px;
+  font-weight:700;
+}
 
-    .wrap{
-      max-width:980px;
-      margin:0 auto;
-      padding:0 14px 60px;
-    }
+/* LAYOUT */
+.wrap{
+  max-width:980px;
+  margin:0 auto;
+  padding:0 14px 60px;
+}
 
-    .mallette{
-      position:relative;
-      display:inline-block;
-      max-width:720px;
-      width:100%;
-    }
+/* MALLETTE */
+.mallette{
+  position:relative;
+  display:inline-block;
+  max-width:720px;
+  width:100%;
+}
 
-    .mallette-img{
-      width:100%;
-      height:auto;
-      display:block;
-      border-radius:12px;
-      user-select:none;
-      box-shadow:0 30px 60px rgba(0,0,0,.18);
-    }
+.mallette-img{
+  width:100%;
+  height:auto;
+  display:block;
+  border-radius:12px;
+  box-shadow:0 30px 60px rgba(0,0,0,.18);
+}
 
-    .hotspot{
-      position:absolute;
-      background:transparent;
-      border:0;
-      cursor:pointer;
-      padding:0;
-      z-index:10;
-    }
+/* ZONES */
+.hotspot{
+  position:absolute;
+  background:transparent;
+  border:0;
+  cursor:pointer;
+  padding:0;
+}
 
-    .hs-1{ left:42%; top:47%; width:16%; height:7%; }
-    .hs-2{ left:42%; top:56%; width:16%; height:7%; }
-    .hs-3{ left:42%; top:61%; width:16%; height:7%; }
-    .hs-4{ left:6%;  top:48%; width:18%; height:34%; }
-    .hs-5{ left:76%; top:48%; width:18%; height:34%; }
-    .hs-6{ left:44%; top:75%; width:12%; height:12%; }
+.hs-1{left:42%;top:47%;width:16%;height:7%;}
+.hs-2{left:42%;top:56%;width:16%;height:7%;}
+.hs-3{left:42%;top:61%;width:16%;height:7%;}
+.hs-4{left:6%;top:48%;width:18%;height:34%;}
+.hs-5{left:76%;top:48%;width:18%;height:34%;}
+.hs-6{left:44%;top:75%;width:12%;height:12%;}
 
-    .panel{
-      position:fixed;
-      inset:0;
-      display:none;
-      background:rgba(0,0,0,.55);
-      z-index:9999;
-      padding:20px;
-    }
+/* MODALE */
+.panel{
+  position:fixed;
+  inset:0;
+  display:none;
+  background:rgba(0,0,0,.55);
+  padding:20px;
+  z-index:9999;
+}
 
-    .panel.active{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
+.panel.active{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
 
-    .panel-box{
-      width:min(920px,96vw);
-      max-height:90vh;
-      overflow:auto;
-      background:var(--ivory);
-      border:1px solid var(--ivorySoft);
-      border-radius:18px;
-      padding:22px 22px 26px;
-    }
+.panel-box{
+  width:min(920px,96vw);
+  max-height:90vh;
+  overflow:auto;
+  background:var(--ivory);
+  border:1px solid var(--ivorySoft);
+  border-radius:18px;
+  padding:22px;
+}
 
-    .panel-top{
-      display:flex;
-      justify-content:flex-end;
-      margin-bottom:12px;
-    }
+.panel-top{
+  display:flex;
+  justify-content:flex-end;
+  margin-bottom:12px;
+}
 
-    .btn{
-      background:var(--blue);
-      color:#fff;
-      border:1px solid var(--blue);
-      padding:8px 16px;
-      border-radius:16px;
-      cursor:pointer;
-      letter-spacing:1px;
-    }
+.btn{
+  background:var(--blue);
+  color:#fff;
+  border:none;
+  padding:8px 16px;
+  border-radius:16px;
+  cursor:pointer;
+}
 
-    .btn:hover{
-      background:var(--blueSoft);
-    }
+.panel-content h3{
+  letter-spacing:2px;
+  margin-bottom:14px;
+}
 
-    .panel-content h3{
-      margin:6px 0 14px;
-      letter-spacing:2px;
-    }
+.panel-content p{
+  line-height:1.6;
+  font-size:15px;
+}
 
-    .panel-content p{
-      margin:0 0 16px;
-      line-height:1.6;
-      font-size:15px;
-    }
+/* 🔒 GRAS FORCÉ */
+.panel-content strong{
+  font-weight:700;
+  color:#162a44;
+}
 
-    .panel-content strong{
-      font-weight:700;
-    }
-
-    .panel-content img{
-      max-width:100%;
-      height:auto;
-      display:block;
-      margin:14px auto;
-      border-radius:14px;
-      border:1px solid var(--ivorySoft);
-    }
-  </style>
+.panel-content img{
+  max-width:100%;
+  margin:14px auto;
+  display:block;
+  border-radius:14px;
+  border:1px solid var(--ivorySoft);
+}
+</style>
 </head>
 
 <body>
 
 <div class="wrap">
-  <h2>BOÎTE CENTRALE</h2>
+<h2>BOÎTE CENTRALE</h2>
 
-  <div class="mallette">
-    <img src="https://i.ibb.co/tTzqhZL0/B-boite-centrale.png" class="mallette-img">
+<div class="mallette">
+  <img src="https://i.ibb.co/tTzqhZL0/B-boite-centrale.png" class="mallette-img">
 
-    <button class="hotspot hs-1" onclick="openPanel(1)"></button>
-    <button class="hotspot hs-2" onclick="openPanel(2)"></button>
-    <button class="hotspot hs-3" onclick="openPanel(3)"></button>
-    <button class="hotspot hs-4" onclick="openPanel(4)"></button>
-    <button class="hotspot hs-5" onclick="openPanel(5)"></button>
-    <button class="hotspot hs-6" onclick="openPanel(6)"></button>
-  </div>
+  <button class="hotspot hs-1" onclick="openPanel(1)"></button>
+  <button class="hotspot hs-2" onclick="openPanel(2)"></button>
+  <button class="hotspot hs-3" onclick="openPanel(3)"></button>
+  <button class="hotspot hs-4" onclick="openPanel(4)"></button>
+  <button class="hotspot hs-5" onclick="openPanel(5)"></button>
+  <button class="hotspot hs-6" onclick="openPanel(6)"></button>
+</div>
 </div>
 
 <div id="panel" class="panel">
@@ -164,78 +162,52 @@
 </div>
 
 <script>
-const DATA = {
-  1:{
-    title:"1. ARCHITECTURE",
-    text:`Comme <strong>ATHENA</strong>, qui incarne la construction intelligente et la maîtrise stratégique,<br>
-    le système <strong>ABDZ</strong> repose sur une architecture interne rigoureuse, indépendante de l’esthétique extérieure,
-    garantissant stabilité et cohérence tout en préservant l’identité du flacon.`,
-    imgs:["https://i.ibb.co/LDMwrkHZ/1-ATHENA-Architecture.png"]
-  },
-
-  2:{
-    title:"2. MODULARITÉ",
-    text:`Comme <strong>PROTEE</strong>, capable de changer de forme sans jamais perdre son essence,<br>
-    le système <strong>ABDZ</strong> s’adapte à une grande variété de flacons et de configurations
-    tout en conservant une logique interne unique et maîtrisée.`,
-    imgs:["https://i.ibb.co/Zzvrxytv/2-PROTEE-Modularit.png"]
-  },
-
-  3:{
-    title:"3. ACTIVATION",
-    text:`Comme <strong>HEPHAISTOS</strong>, dieu du mécanisme fonctionnel,<br>
-    le système <strong>ABDZ</strong> s’active par l’usage à travers des interactions mécaniques distinctes,
-    simples pour l’utilisateur et invisibles à l’extérieur.`,
-    imgs:["https://i.ibb.co/2zHktYX/3-HEPHAISTOS-Activation.png"]
-  },
-
-  4:{
-    title:"4. DURABILITÉ",
-    text:`Comme <strong>DEMETER</strong>, symbole du temps long et de la continuité,<br>
-    le système <strong>ABDZ</strong> transforme le flacon en un objet durable,
-    conçu pour traverser le temps plutôt que pour être remplacé.`,
-    imgs:["https://i.ibb.co/tp9Tf83T/4-DEMETER-Durabilit.png"]
-  },
-
-  5:{
-    title:"5. EXCLUSIVITÉ",
-    text:`Comme <strong>APOLLON</strong>, figure de l’idéal et de la rareté,<br>
-    le système <strong>ABDZ</strong> intègre une compatibilité volontairement contrôlée
-    afin de préserver l’identité et l’exclusivité de chaque univers de marque.`,
-    imgs:["https://i.ibb.co/39tg8Ndx/5-APOLLON-Exclusivit.png"]
-  },
-
-  6:{
-    title:"6. PROTECTION",
-    text:`Ce qui est montré est volontaire.<br>Ce qui est protégé l’est tout autant.`,
-    imgs:[
-      "https://i.ibb.co/4nvT4PZY/6-a-A-M-AD-E-ABDZ.png",
-      "https://i.ibb.co/ksh6R0dB/6-b-boite-de-fremeture.png"
-    ]
-  }
+const DATA={
+1:{
+title:"1. ARCHITECTURE",
+text:"Comme <strong>ATHENA</strong>, qui incarne la construction intelligente et la maîtrise stratégique,<br>le système <strong>ABDZ</strong> repose sur une architecture interne rigoureuse, indépendante de l’esthétique extérieure, garantissant stabilité et cohérence tout en préservant l’identité du flacon.",
+imgs:["https://i.ibb.co/LDMwrkHZ/1-ATHENA-Architecture.png"]
+},
+2:{
+title:"2. MODULARITÉ",
+text:"Comme <strong>PROTEE</strong>, capable de changer de forme sans jamais perdre son essence,<br>le système <strong>ABDZ</strong> s’adapte à une grande variété de flacons et de configurations tout en conservant une logique interne unique et maîtrisée.",
+imgs:["https://i.ibb.co/Zzvrxytv/2-PROTEE-Modularit.png"]
+},
+3:{
+title:"3. ACTIVATION",
+text:"Comme <strong>HEPHAISTOS</strong>, dieu du mécanisme fonctionnel,<br>le système <strong>ABDZ</strong> s’active par l’usage à travers des interactions mécaniques distinctes, simples pour l’utilisateur et invisibles à l’extérieur.",
+imgs:["https://i.ibb.co/2zHktYX/3-HEPHAISTOS-Activation.png"]
+},
+4:{
+title:"4. DURABILITÉ",
+text:"Comme <strong>DEMETER</strong>, symbole du temps long et de la continuité,<br>le système <strong>ABDZ</strong> transforme le flacon en un objet durable, conçu pour traverser le temps plutôt que pour être remplacé.",
+imgs:["https://i.ibb.co/tp9Tf83T/4-DEMETER-Durabilit.png"]
+},
+5:{
+title:"5. EXCLUSIVITÉ",
+text:"Comme <strong>APOLLON</strong>, figure de l’idéal et de la rareté,<br>le système <strong>ABDZ</strong> intègre une compatibilité volontairement contrôlée afin de préserver l’identité et l’exclusivité de chaque univers de marque.",
+imgs:["https://i.ibb.co/39tg8Ndx/5-APOLLON-Exclusivit.png"]
+},
+6:{
+title:"6. PROTECTION",
+text:"Ce qui est <strong>montré</strong> est volontaire.<br>Ce qui est <strong>protégé</strong> l’est tout autant.",
+imgs:[
+"https://i.ibb.co/4nvT4PZY/6-a-A-M-AD-E-ABDZ.png",
+"https://i.ibb.co/ksh6R0dB/6-b-boite-de-fremeture.png"
+]}
 };
 
 function openPanel(n){
-  const panel=document.getElementById("panel");
-  const content=document.getElementById("panel-content");
-  const item=DATA[n];
-  if(!item) return;
-
-  content.innerHTML = `
-    <h3>${item.title}</h3>
-    <p>${item.text}</p>
-    ${item.imgs.map(src=>`<img src="${src}">`).join("")}
-  `;
-  panel.classList.add("active");
+const p=document.getElementById("panel");
+const c=document.getElementById("panel-content");
+const i=DATA[n];
+c.innerHTML=`<h3>${i.title}</h3><p>${i.text}</p>${i.imgs.map(s=>`<img src="${s}">`).join("")}`;
+p.classList.add("active");
 }
 
 function closePanel(){
-  document.getElementById("panel").classList.remove("active");
+document.getElementById("panel").classList.remove("active");
 }
-
-document.addEventListener("keydown",e=>{
-  if(e.key==="Escape") closePanel();
-});
 </script>
 
 </body>
