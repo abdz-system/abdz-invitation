@@ -14,7 +14,6 @@
       --textBlue:#243b5a;
     }
 
-    /* ===== BASE ===== */
     body{
       margin:0;
       background:var(--ivory);
@@ -29,14 +28,12 @@
       font-weight:700;
     }
 
-    /* ===== LAYOUT ===== */
     .wrap{
       max-width:980px;
       margin:0 auto;
       padding:0 14px 60px;
     }
 
-    /* ===== MALLETTE ===== */
     .mallette{
       position:relative;
       display:inline-block;
@@ -53,7 +50,6 @@
       box-shadow:0 30px 60px rgba(0,0,0,.18);
     }
 
-    /* ===== ZONES CLIQUABLES ===== */
     .hotspot{
       position:absolute;
       background:transparent;
@@ -63,20 +59,13 @@
       z-index:10;
     }
 
-    /* tiroir 1 */
     .hs-1{ left:42%; top:47%; width:16%; height:7%; }
-    /* tiroir 2 */
     .hs-2{ left:42%; top:56%; width:16%; height:7%; }
-    /* tiroir 3 */
     .hs-3{ left:42%; top:61%; width:16%; height:7%; }
-    /* porte gauche */
-    .hs-4{ left:6%; top:48%; width:18%; height:34%; }
-    /* porte droite */
+    .hs-4{ left:6%;  top:48%; width:18%; height:34%; }
     .hs-5{ left:76%; top:48%; width:18%; height:34%; }
-    /* cadenas */
     .hs-6{ left:44%; top:75%; width:12%; height:12%; }
 
-    /* ===== MODALE ===== */
     .panel{
       position:fixed;
       inset:0;
@@ -133,10 +122,6 @@
       font-size:15px;
     }
 
-    .panel-content strong{
-      font-weight:700;
-    }
-
     .panel-content img{
       max-width:100%;
       height:auto;
@@ -154,12 +139,7 @@
   <h2>BOÎTE CENTRALE</h2>
 
   <div class="mallette">
-    <img
-      src="https://i.ibb.co/tTzqhZL0/B-boite-centrale.png"
-      alt="Boîte centrale ABDZ"
-      class="mallette-img"
-      draggable="false"
-    >
+    <img src="https://i.ibb.co/tTzqhZL0/B-boite-centrale.png" class="mallette-img">
 
     <button class="hotspot hs-1" onclick="openPanel(1)"></button>
     <button class="hotspot hs-2" onclick="openPanel(2)"></button>
@@ -170,7 +150,7 @@
   </div>
 </div>
 
-<div id="panel" class="panel" aria-hidden="true">
+<div id="panel" class="panel">
   <div class="panel-box">
     <div class="panel-top">
       <button class="btn" onclick="closePanel()">✕ Fermer</button>
@@ -183,37 +163,47 @@
 const DATA = {
   1:{
     title:"1. ARCHITECTURE",
-    text:"Comme <strong>ATHENA</strong>, qui incarne la construction intelligente et la maîtrise stratégique,<br>le système <strong>ABDZ</strong> repose sur une architecture interne rigoureuse, indépendante de l’esthétique extérieure, garantissant stabilité et cohérence tout en préservant l’identité du flacon.",
+    text:`Comme ATHENA, qui incarne la construction intelligente et la maîtrise stratégique,<br>
+    le système ABDZ repose sur une architecture interne rigoureuse, indépendante de l’esthétique extérieure,
+    garantissant stabilité et cohérence tout en préservant l’identité du flacon.`,
     imgs:["https://i.ibb.co/LDMwrkHZ/1-ATHENA-Architecture.png"]
   },
 
   2:{
     title:"2. MODULARITÉ",
-    text:"Comme <strong>PROTEE</strong>, capable de changer de forme sans jamais perdre son essence,<br>le système <strong>ABDZ</strong> s’adapte à une grande variété de flacons et de configurations tout en conservant une logique interne unique et maîtrisée.",
+    text:`Comme PROTEE, capable de changer de forme sans jamais perdre son essence,<br>
+    le système ABDZ s’adapte à une grande variété de flacons et de configurations
+    tout en conservant une logique interne unique et maîtrisée.`,
     imgs:["https://i.ibb.co/Zzvrxytv/2-PROTEE-Modularit.png"]
   },
 
   3:{
     title:"3. ACTIVATION",
-    text:"Comme <strong>HEPHAISTOS</strong>, dieu du mécanisme fonctionnel,<br>le système <strong>ABDZ</strong> s’active par l’usage à travers des interactions mécaniques distinctes, simples pour l’utilisateur et invisibles à l’extérieur.",
+    text:`Comme HEPHAISTOS, dieu du mécanisme fonctionnel,<br>
+    le système ABDZ s’active par l’usage à travers des interactions mécaniques distinctes,
+    simples pour l’utilisateur et invisibles à l’extérieur.`,
     imgs:["https://i.ibb.co/2zHktYX/3-HEPHAISTOS-Activation.png"]
   },
 
   4:{
     title:"4. DURABILITÉ",
-    text:"Comme <strong>DEMETER</strong>, symbole du temps long et de la continuité,<br>le système <strong>ABDZ</strong> transforme le flacon en un objet durable, conçu pour traverser le temps plutôt que pour être remplacé.",
+    text:`Comme DEMETER, symbole du temps long et de la continuité,<br>
+    le système ABDZ transforme le flacon en un objet durable,
+    conçu pour traverser le temps plutôt que pour être remplacé.`,
     imgs:["https://i.ibb.co/tp9Tf83T/4-DEMETER-Durabilit.png"]
   },
 
   5:{
     title:"5. EXCLUSIVITÉ",
-    text:"Comme <strong>APOLLON</strong>, figure de l’idéal et de la rareté,<br>le système <strong>ABDZ</strong> intègre une compatibilité volontairement contrôlée afin de préserver l’identité et l’exclusivité de chaque univers de marque.",
+    text:`Comme APOLLON, figure de l’idéal et de la rareté,<br>
+    le système ABDZ intègre une compatibilité volontairement contrôlée
+    afin de préserver l’identité et l’exclusivité de chaque univers de marque.`,
     imgs:["https://i.ibb.co/39tg8Ndx/5-APOLLON-Exclusivit.png"]
   },
 
   6:{
     title:"6. PROTECTION",
-    text:"Ce qui est montré est volontaire.<br>Ce qui est protégé l’est tout autant.",
+    text:`Ce qui est montré est volontaire.<br>Ce qui est protégé l’est tout autant.`,
     imgs:[
       "https://i.ibb.co/4nvT4PZY/6-a-A-M-AD-E-ABDZ.png",
       "https://i.ibb.co/ksh6R0dB/6-b-boite-de-fremeture.png"
@@ -230,16 +220,13 @@ function openPanel(n){
   content.innerHTML = `
     <h3>${item.title}</h3>
     <p>${item.text}</p>
-    ${item.imgs.map(src=>`<img src="${src}" alt="">`).join("")}
+    ${item.imgs.map(src=>`<img src="${src}">`).join("")}
   `;
   panel.classList.add("active");
-  panel.setAttribute("aria-hidden","false");
 }
 
 function closePanel(){
-  const panel=document.getElementById("panel");
-  panel.classList.remove("active");
-  panel.setAttribute("aria-hidden","true");
+  document.getElementById("panel").classList.remove("active");
 }
 
 document.addEventListener("keydown",e=>{
