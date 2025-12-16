@@ -1,30 +1,164 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>ABDZ – Cœur du système</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>ABDZ – Boîte centrale</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
+<style>
+:root{
+  --ivory:#f6f1e8;
+  --ivorySoft:#e9e4da;
+  --blue:#1f3b6f;
+  --blueSoft:#274a8a;
+  --textBlue:#243b5a;
+}
 
-    img {
-      max-width: 90%;
-      height: auto;
-      display: block;
-    }
-  </style>
+body{
+  margin:0;
+  background:var(--ivory);
+  color:var(--textBlue);
+  font-family:"Century Gothic", Arial, sans-serif;
+  text-align:center;
+}
+
+.title{
+  margin:28px 0 16px;
+  letter-spacing:2px;
+  font-weight:700;
+}
+
+.wrap{
+  max-width:980px;
+  margin:0 auto;
+  padding:0 14px 60px;
+}
+
+.mallette{
+  position:relative;
+  display:inline-block;
+  max-width:720px;
+  width:100%;
+}
+
+.mallette-img{
+  width:100%;
+  height:auto;
+  display:block;
+  border-radius:12px;
+  box-shadow:0 30px 60px rgba(0,0,0,.18);
+}
+
+.hotspot{
+  position:absolute;
+  border:0;
+  background:transparent;
+  cursor:pointer;
+  z-index:10;
+}
+
+/* zones */
+.hs-1{left:42%;top:47%;width:16%;height:7%;}
+.hs-2{left:42%;top:56%;width:16%;height:7%;}
+.hs-3{left:42%;top:61%;width:16%;height:7%;}
+.hs-4{left:6%;top:48%;width:18%;height:34%;}
+.hs-5{left:76%;top:48%;width:18%;height:34%;}
+.hs-6{left:44%;top:75%;width:12%;height:12%;}
+
+/* modale */
+.panel{
+  position:fixed;
+  inset:0;
+  display:none;
+  background:rgba(0,0,0,.55);
+  z-index:9999;
+}
+
+.panel.active{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.panel-box{
+  width:min(920px,96vw);
+  max-height:90vh;
+  overflow:auto;
+  background:var(--ivory);
+  border-radius:18px;
+  padding:22px;
+}
+
+.panel-top{
+  display:flex;
+  justify-content:flex-end;
+}
+
+.btn{
+  background:var(--blue);
+  color:#fff;
+  border:0;
+  padding:8px 16px;
+  border-radius:16px;
+  cursor:pointer;
+}
+
+.panel-content img{
+  max-width:100%;
+  border-radius:14px;
+  margin:14px auto;
+}
+</style>
 </head>
 
 <body>
-  <img src="boite-centrale.png" alt="ABDZ – Boîte centrale">
+<div class="wrap">
+<h2 class="title">BOÎTE CENTRALE</h2>
+
+<div class="mallette">
+<img src="https://i.ibb.co/tTzqhZL0/B-boite-centrale.png" class="mallette-img" alt="Boîte centrale ABDZ">
+
+<button class="hotspot hs-1" onclick="openPanel(1)"></button>
+<button class="hotspot hs-2" onclick="openPanel(2)"></button>
+<button class="hotspot hs-3" onclick="openPanel(3)"></button>
+<button class="hotspot hs-4" onclick="openPanel(4)"></button>
+<button class="hotspot hs-5" onclick="openPanel(5)"></button>
+<button class="hotspot hs-6" onclick="openPanel(6)"></button>
+</div>
+</div>
+
+<div id="panel" class="panel" aria-hidden="true">
+  <div class="panel-box">
+    <div class="panel-top">
+      <button class="btn" onclick="closePanel()">✕ Fermer</button>
+    </div>
+    <div id="panel-content" class="panel-content"></div>
+  </div>
+</div>
+
+<script>
+const DATA={
+1:{title:"1. ARCHITECTURE",text:"Comme <strong>ATHENA</strong>...",imgs:["https://i.ibb.co/LDMwrkHZ/1-ATHENA-Architecture.png"]},
+2:{title:"2. MODULARITÉ",text:"Comme <strong>PROTÉE</strong>...",imgs:["https://i.ibb.co/Zzvrxytv/2-PROTEE-Modularit.png"]},
+3:{title:"3. ACTIVATION",text:"Comme <strong>HEPHAISTOS</strong>...",imgs:["https://i.ibb.co/2zHktYX/3-HEPHAISTOS-Activation.png"]},
+4:{title:"4. DURABILITÉ",text:"Comme <strong>DÉMÉTER</strong>...",imgs:["https://i.ibb.co/tp9Tf83T/4-DEMETER-Durabilit.png"]},
+5:{title:"5. EXCLUSIVITÉ",text:"Comme <strong>APOLLON</strong>...",imgs:["https://i.ibb.co/39tg8Ndx/5-APOLLON-Exclusivit.png"]},
+6:{title:"6. PROTECTION",text:"Ce qui est montré est volontaire.<br>Ce qui est protégé l’est tout autant.",imgs:["https://i.ibb.co/4nvT4PZY/6-a-A-M-AD-E-ABDZ.png","https://i.ibb.co/ksh6R0dB/6-b-boite-de-fremeture.png"]}
+};
+
+function openPanel(n){
+const p=document.getElementById("panel");
+const c=document.getElementById("panel-content");
+const d=DATA[n];
+c.innerHTML=`<h3>${d.title}</h3><p>${d.text}</p>${d.imgs.map(i=>`<img src="${i}">`).join("")}`;
+p.classList.add("active");
+}
+
+function closePanel(){
+document.getElementById("panel").classList.remove("active");
+}
+
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closePanel()});
+</script>
 </body>
 </html>
