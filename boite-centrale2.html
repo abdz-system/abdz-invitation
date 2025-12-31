@@ -31,21 +31,27 @@ function openPanel(n){
   const content = document.getElementById("panel-content");
   const data = DATA[n];
 
+  if(!data){
+    alert("Erreur : tiroir non défini");
+    return;
+  }
+
   let html = `<h3>${data.title}</h3>`;
 
-  // 🎬 SI VIDEOS
+  // 🎬 VIDEOS
   if(data.videos){
     html += `
       <video id="videoPlayer" controls autoplay style="width:100%;border-radius:14px;">
         <source src="${data.videos[0]}" type="video/mp4">
+        Votre navigateur ne supporte pas la vidéo.
       </video>
     `;
   }
 
-  // 🖼️ SI IMAGES
+  // 🖼️ IMAGES
   if(data.imgs){
     data.imgs.forEach(img=>{
-      html += `<img src="${img}">`;
+      html += `<img src="${img}" style="max-width:70%;margin:18px auto;display:block;border-radius:14px;">`;
     });
   }
 
@@ -57,10 +63,11 @@ function openPanel(n){
     const player = document.getElementById("videoPlayer");
     let index = 0;
 
-    player.onended = () => {
+    player.onended = function(){
       index++;
       if(index < data.videos.length){
         player.src = data.videos[index];
+        player.load();
         player.play();
       }
     };
