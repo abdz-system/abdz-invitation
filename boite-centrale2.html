@@ -1,0 +1,75 @@
+<script>
+const DATA = {
+  1: {
+    title: "TIROIR 1",
+    videos: ["1.mp4","2.mp4","3.mp4"]
+  },
+  2: {
+    title: "TIROIR 2",
+    videos: ["4.mp4","5.mp4","6.mp4"]
+  },
+  3: {
+    title: "TIROIR 3",
+    videos: ["7.mp4","8.mp4","9.mp4","10.mp4"]
+  },
+  4: {
+    title: "TIROIR 4",
+    imgs: ["11.png","12.png","13.png"]
+  },
+  5: {
+    title: "TIROIR 5",
+    imgs: ["14.png","15.png"]
+  },
+  6: {
+    title: "ACCÈS FINAL",
+    videos: ["16.mp4"]
+  }
+};
+
+function openPanel(n){
+  const panel = document.getElementById("panel");
+  const content = document.getElementById("panel-content");
+  const data = DATA[n];
+
+  let html = `<h3>${data.title}</h3>`;
+
+  // 🎬 SI VIDEOS
+  if(data.videos){
+    html += `
+      <video id="videoPlayer" controls autoplay style="width:100%;border-radius:14px;">
+        <source src="${data.videos[0]}" type="video/mp4">
+      </video>
+    `;
+  }
+
+  // 🖼️ SI IMAGES
+  if(data.imgs){
+    data.imgs.forEach(img=>{
+      html += `<img src="${img}">`;
+    });
+  }
+
+  content.innerHTML = html;
+  panel.classList.add("active");
+
+  // ▶️ ENCHAÎNEMENT DES VIDÉOS
+  if(data.videos && data.videos.length > 1){
+    const player = document.getElementById("videoPlayer");
+    let index = 0;
+
+    player.onended = () => {
+      index++;
+      if(index < data.videos.length){
+        player.src = data.videos[index];
+        player.play();
+      }
+    };
+  }
+}
+
+function closePanel(){
+  const panel = document.getElementById("panel");
+  panel.classList.remove("active");
+  document.getElementById("panel-content").innerHTML = "";
+}
+</script>
