@@ -1,4 +1,4 @@
-≠rá^—f•ñÿ¶{]¨y 'v√Æ∂õ≠(function () {
+(function () {
   "use strict";
 
   const defaults = [
